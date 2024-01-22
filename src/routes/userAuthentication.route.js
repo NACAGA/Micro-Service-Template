@@ -67,13 +67,6 @@ router.patch(
     userAuthenticationController.changeUserInfo
 );
 
-/* POST validate user session. */
-router.post(
-    '/validate-user-session',
-    [validateRequestHeaders(['authorization']), header('authorization').isString()],
-    userAuthenticationController.validateUserSession
-);
-
 /* GET get users. */
 router.get('/get-users', [validateRequestBody(['fields']), body('fields').isObject()], userAuthenticationController.getUsers);
 

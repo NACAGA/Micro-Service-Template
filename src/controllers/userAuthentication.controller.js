@@ -3,7 +3,6 @@ const loginUserService = require('../services/loginUser.service');
 const deleteUserService = require('../services/deleteUser.service');
 const changeUsernameService = require('../services/changeUsername.service');
 const changeUserInfoService = require('../services/changeUserInfo.service');
-const validateUserSessionService = require('../services/validateUserSession.service');
 const getUsersService = require('../services/getUsers.service');
 const getUserInfoService = require('../services/getUserInfo.service');
 
@@ -65,19 +64,6 @@ async function changeUserInfo(req, res, next) {
     }
 }
 
-
-async function validateUserSession(req, res, next) {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        let response = await validateUserSessionService.validateUserSession(token);
-        response = response.getResponse();
-        res.status(response.status).json(response.body);
-    } catch (err) {
-        console.error('Error while validating user session:', err.message);
-        next(err);
-    }
-}
-
 async function getUsers(req, res, next) {
     try {
         let response = await getUsersService.getUsers(req.body);
@@ -106,7 +92,6 @@ module.exports = {
     loginUser,
     changeUsername,
     changeUserInfo,
-    validateUserSession,
     getUsers,
     getUserInfo,
 };

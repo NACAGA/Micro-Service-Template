@@ -92,17 +92,6 @@ describe('mock db connection', () => {
         })
     });
 
-    describe('POST /user-authentication/validate-user-session', () => {
-        it('OK, validating a user session works', async () => {
-            mockExecute.mockDbReturn([{ id: 1, username: mockUser.username, password: mockUser.password, status: 'ACTIVE' }]);
-            const res = await request(app).post('/user-authentication/validate-user-session')
-                .set('Authorization', mockUser.authToken);
-            expect(res.statusCode).toBe(200);
-            expect(mockExecute).toHaveBeenCalled();
-            expect(mockExecute).toHaveBeenCalledWith("SELECT * FROM Users WHERE id = ?", [mockUser.id]);
-        })
-    });
-
     describe('GET /user-authentication/get-users', () => {
         it('OK, getting users works', async () => {
             mockExecute.mockDbReturn([{ id: 1, username: mockUser.username }]);

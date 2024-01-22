@@ -65,15 +65,6 @@ describe('router userAuthentication', () => {
         })
     });
 
-
-    describe('POST /user-authentication/validate-user-session', () => {
-        it('OK, validating a user session works', async () => {
-            const res = await request(app).post('/user-authentication/validate-user-session')
-                .set('Authorization', testUser.authToken);
-            expect(res.statusCode).toBe(200);
-        })
-    });
-
     describe('GET /user-authentication/get-users', () => {
         it('OK, getting users works', async () => {
             const res = await request(app).get('/user-authentication/get-users')
