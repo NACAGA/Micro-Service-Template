@@ -48,6 +48,38 @@ describe('router template', () => {
         expect(mockExecute).toHaveBeenCalled();
         expect(mockExecute).toHaveBeenCalledWith("SELECT * FROM People WHERE name = ?", [testUser.name]);
         expect(mockExecute).toHaveBeenCalledWith("INSERT INTO People (name, favoritecolor) VALUES (?, ?)", [testUser.name, testUser.favoriteColor]);
-    })
+    });
 
+    it('OK, updating person works', async () => {
+        const newColor = 'newColor';
+        mockExecute.mockDbReturn([{ name: testUser.name, favoritecolor: testUser.favoriteColor }]).mockDbReturn({ affectedRows: 1 });
+        const res = await request(app).patch('/template/update-person')
+            .send({ name: testUser.name, favoriteColor: newColor });
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe('Person successfully updated');
+        expect(mockExecute).toHaveBeenCalled();
+        expect(mockExecute).toHaveBeenCalledWith("SELECT * FROM People WHERE name = ?", [testUser.name]);
+        expect(mockExecute).toHaveBeenCalledWith("UPDATE People SET favoritecolor = ? WHERE name = ?", [newColor, testUser.name]);
+    });
+
+    it('OK, getting people works', async () => {
+        mockExecute.mockDbReturn([{ name: testUser.name, favoritecolor: testUser.favoriteColor }]);
+        const res = await request(app).get('/template/get-people');
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe('People successfully retrieved');
+        expect(res.body.people.length).toBe(1);
+        expect(mockExecute).toHaveBeenCalled();
+        // expect(mockExecute).toHaveBeenCalledWith("SELECT * FROM People");
+    });
+
+    it('OK, deleting person works', async () => {
+        mockExecute.mockDbReturn([{ name: testUser.name, favoritecolor: testUser.favoriteColor }]).mockDbReturn({ affectedRows: 1 });
+        const res = await request(app).delete('/template/delete-person')
+            .send({ name: testUser.name });
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe('Person successfully deleted');
+        expect(mockExecute).toHaveBeenCalled();
+        expect(mockExecute).toHaveBeenCalledWith("SELECT * FROM People WHERE name = ?", [testUser.name]);
+        expect(mockExecute).toHaveBeenCalledWith("DELETE FROM People WHERE name = ?", [testUser.name]);
+    });
 });
