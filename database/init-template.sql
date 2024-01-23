@@ -8,3 +8,9 @@ CREATE TABLE Users (
     phone VARCHAR(255),
     favoritecolor VARCHAR(255)
 );
+
+CREATE TABLE People (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    favoritecolor VARCHAR(255) NOT NULL
+);

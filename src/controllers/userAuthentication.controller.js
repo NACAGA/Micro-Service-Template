@@ -2,7 +2,6 @@ const createUserService = require('../services/createUser.service');
 const loginUserService = require('../services/loginUser.service');
 const deleteUserService = require('../services/deleteUser.service');
 const changeUsernameService = require('../services/changeUsername.service');
-const changeUserInfoService = require('../services/changeUserInfo.service');
 const getUsersService = require('../services/getUsers.service');
 const getUserInfoService = require('../services/getUserInfo.service');
 
@@ -52,18 +51,6 @@ async function changeUsername(req, res, next) {
     }
 }
 
-async function changeUserInfo(req, res, next) {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        let response = await changeUserInfoService.changeUserInfo(token, req.body);
-        response = response.getResponse();
-        res.status(response.status).json(response.body);
-    } catch (err) {
-        console.error('Error while changing user info:', err.message);
-        next(err);
-    }
-}
-
 async function getUsers(req, res, next) {
     try {
         let response = await getUsersService.getUsers(req.body);
@@ -91,7 +78,6 @@ module.exports = {
     deleteUser,
     loginUser,
     changeUsername,
-    changeUserInfo,
     getUsers,
     getUserInfo,
 };

@@ -60,13 +60,6 @@ router.patch(
     userAuthenticationController.changeUsername
 );
 
-/* PATCH change user info. */
-router.patch(
-    '/change-user-info',
-    [validateRequestBody(['new_fields']), validateRequestHeaders(['authorization']), header('authorization').isString()],
-    userAuthenticationController.changeUserInfo
-);
-
 /* GET get users. */
 router.get('/get-users', [validateRequestBody(['fields']), body('fields').isObject()], userAuthenticationController.getUsers);
 

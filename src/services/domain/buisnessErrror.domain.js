@@ -203,6 +203,22 @@ class GetUsersError extends BusinessError {
     }
 }
 
+class CreatePersonError extends BusinessError {
+    constructor() {
+        super();
+        this.message = 'Error creating person';
+        this.code = 500;
+    }
+}
+
+class PersonAlreadyExistsError extends BusinessError {
+    constructor() {
+        super();
+        this.message = 'Person already exists';
+        this.code = 403;
+    }
+}
+
 module.exports = {
     BusinessError,
     UsernameTakenError,
@@ -228,4 +244,6 @@ module.exports = {
     UserIsBlockedError,
     GetUserInfoError,
     GetUsersError,
+    CreatePersonError,
+    PersonAlreadyExistsError,
 };

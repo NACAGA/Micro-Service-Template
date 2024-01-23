@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const userAuthenticationRouter = require('./routes/userAuthentication.route');
+const templateRouter = require('./routes/template.route');
 
 app.use(cors())
 app.use(bodyParser.json());
@@ -16,6 +17,8 @@ app.use(
 app.get('/', (req, res) => {
     res.json({ message: 'ok' });
 });
+
+app.use('/template', templateRouter);
 
 app.use('/user-authentication', userAuthenticationRouter);
 
