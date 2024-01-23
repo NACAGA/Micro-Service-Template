@@ -33,6 +33,14 @@ describe('router template', () => {
         expect(res.statusCode).toBe(201);
         expect(res.body.message).toBe('Person successfully created');
     })
+    it('OK, updating person works', async () => {
+        const newColor = 'newColor';
+        const res = await request(app).patch('/template/update-person')
+            .send({ name: testUser.name, favoriteColor: newColor });
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe('Person successfully updated');
+        testUser.favoriteColor = newColor;
+    })
     it('OK, deleting person works', async () => {
         const res = await request(app).delete('/template/delete-person')
             .send({ name: testUser.name });

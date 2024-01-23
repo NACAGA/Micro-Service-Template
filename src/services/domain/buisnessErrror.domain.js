@@ -48,10 +48,19 @@ class PersonDoesNotExistError extends BusinessError {
     }
 }
 
+class UpdatePersonError extends BusinessError {
+    constructor() {
+        super();
+        this.message = 'Error updating person';
+        this.code = 500;
+    }
+}
+
 module.exports = {
     BusinessError,
     DatabaseError,
     CreatePersonError,
     PersonAlreadyExistsError,
     PersonDoesNotExistError,
+    UpdatePersonError,
 };

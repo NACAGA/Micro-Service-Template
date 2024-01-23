@@ -15,4 +15,10 @@ router.delete(
     templateController.deletePerson
 );
 
+router.patch(
+    '/update-person',
+    [body('name').isString(), body('favoriteColor').isString()],
+    templateController.updatePerson
+);
+
 module.exports = router;

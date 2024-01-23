@@ -1,5 +1,6 @@
 const createPersonService = require('../services/createPerson.service');
 const deletePersonService = require('../services/deletePerson.service');
+const updatePersonService = require('../services/updatePerson.service');
 
 async function createPerson(req, res, next) {
     try {
@@ -23,7 +24,19 @@ async function deletePerson(req, res, next) {
     }
 }
 
+async function updatePerson(req, res, next) {
+    try {
+        let response = await updatePersonService.updatePerson(req.body);
+        response = response.getResponse();
+        res.status(response.status).json(response.body);
+    } catch (err) {
+        console.error('Error while updating a person:', err);
+        next(err);
+    }
+}
+
 module.exports = {
     createPerson,
-    deletePerson
+    deletePerson,
+    updatePerson
 };
