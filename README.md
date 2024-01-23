@@ -96,5 +96,3 @@ To start the database and the server together using docker compose, run the foll
 ```bash
 docker compose up --build
 ```
-
-## Configuration
