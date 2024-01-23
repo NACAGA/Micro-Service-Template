@@ -219,6 +219,14 @@ class PersonAlreadyExistsError extends BusinessError {
     }
 }
 
+class PersonDoesNotExistError extends BusinessError {
+    constructor() {
+        super();
+        this.message = 'Person does not exist';
+        this.code = 403;
+    }
+}
+
 module.exports = {
     BusinessError,
     UsernameTakenError,
@@ -246,4 +254,5 @@ module.exports = {
     GetUsersError,
     CreatePersonError,
     PersonAlreadyExistsError,
+    PersonDoesNotExistError,
 };

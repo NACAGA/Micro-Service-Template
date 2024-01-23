@@ -9,4 +9,10 @@ router.post(
     templateController.createPerson
 );
 
+router.delete(
+    '/delete-person',
+    [header('name').isString()],
+    templateController.deletePerson
+);
+
 module.exports = router;

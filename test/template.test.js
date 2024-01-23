@@ -18,4 +18,10 @@ describe('router template', () => {
         expect(res.statusCode).toBe(201);
         expect(res.body.message).toBe('Person successfully created');
     })
+    it('OK, deleting person works', async () => {
+        const res = await request(app).delete('/template/delete-person')
+            .send({ name: 'testName' });
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe('Person successfully deleted');
+    })
 });
