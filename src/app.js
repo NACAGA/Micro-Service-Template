@@ -3,7 +3,6 @@ const cors = require('cors')
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const userAuthenticationRouter = require('./routes/userAuthentication.route');
 const templateRouter = require('./routes/template.route');
 
 app.use(cors())
@@ -19,8 +18,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/template', templateRouter);
-
-app.use('/user-authentication', userAuthenticationRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
