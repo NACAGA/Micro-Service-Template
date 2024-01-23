@@ -21,4 +21,9 @@ router.patch(
     templateController.updatePerson
 );
 
+router.get(
+    '/get-people',
+    templateController.getPeople
+);
+
 module.exports = router;

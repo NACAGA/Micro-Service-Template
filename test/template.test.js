@@ -41,6 +41,12 @@ describe('router template', () => {
         expect(res.body.message).toBe('Person successfully updated');
         testUser.favoriteColor = newColor;
     })
+    it('OK, getting people works', async () => {
+        const res = await request(app).get('/template/get-people');
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe('People successfully retrieved');
+        expect(res.body.people.length).toBe(1);
+    })
     it('OK, deleting person works', async () => {
         const res = await request(app).delete('/template/delete-person')
             .send({ name: testUser.name });
