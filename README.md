@@ -146,13 +146,6 @@ The base URL will be dependent on where you run it from and the port specified i
 -   **URL**: `/`
 -   **Method**: `GET`
 -   **Description**: Health check endpoint
--   **Query Parameters**:
-
-    | Parameter | Type   | Description           |
-    | --------- | ------ | --------------------- |
-    | `param1`  | String | Description of param1 |
-    | `param2`  | Number | Description of param2 |
-
 -   **Example**:
 
     Request
@@ -183,28 +176,30 @@ The base URL will be dependent on where you run it from and the port specified i
     | `favoriteColor`  | String | Person's favorite color |
 
 -   **Example**:
-    
-        Request
-    
-        ```json
-        {
-            "headers": {},
-            "body": {
-                "name": "john",
-                "favoriteColor": "blue"
-            }
+
+    Request
+
+    ```json
+    {
+        "headers": {},
+        "body": {
+            "name": "john",
+            "favoriteColor": "blue"
         }
-        ```
-    
-        ```json
-        {
-            "message": "Person successfully created",
-            "person": {
-                "name": "john",
-                "favoriteColor": "blue"
-            }
+    }
+    ```
+
+    Response
+
+    ```json
+    {
+        "message": "Person successfully created",
+        "person": {
+            "name": "john",
+            "favoriteColor": "blue"
         }
-        ```
+    }
+    ```
 
 #### `PATCH /template/update-person`
 
@@ -220,27 +215,29 @@ The base URL will be dependent on where you run it from and the port specified i
 
 -   **Example**:
     
-        Request
-    
-        ```json
-        {
-            "headers": {},
-            "body": {
-                "name": "john",
-                "favoriteColor": "red"
-            }
+    Request
+
+    ```json
+    {
+        "headers": {},
+        "body": {
+            "name": "john",
+            "favoriteColor": "red"
         }
-        ```
-    
-        ```json
-        {
-            "message": "Person successfully updated",
-            "person": {
-                "name": "john",
-                "favoriteColor": "red"
-            }
+    }
+    ```
+
+    Response
+
+    ```json
+    {
+        "message": "Person successfully updated",
+        "person": {
+            "name": "john",
+            "favoriteColor": "red"
         }
-        ```
+    }
+    ```
 
 #### `GET /template/get-people`
 
@@ -249,31 +246,33 @@ The base URL will be dependent on where you run it from and the port specified i
 -   **Description**: Gets all people
 
 -   **Example**:
-    
-        Request
-    
-        ```json
-        {
-            "headers": {},
-            "body": {}
-        }
-        ```
-    
-        ```json
-        {
-            "message": "People successfully retrieved",
-            "people": [
-                {
-                    "name": "john",
-                    "favoriteColor": "red"
-                },
-                {
-                    "name": "jane",
-                    "favoriteColor": "blue"
-                }
-            ]
-        }
-        ```
+
+    Request
+
+    ```json
+    {
+        "headers": {},
+        "body": {}
+    }
+    ```
+
+    Response
+
+    ```json
+    {
+        "message": "People successfully retrieved",
+        "people": [
+            {
+                "name": "john",
+                "favoriteColor": "red"
+            },
+            {
+                "name": "jane",
+                "favoriteColor": "blue"
+            }
+        ]
+    }
+    ```
 
 #### `DELETE /template/delete-person`
 
@@ -287,23 +286,25 @@ The base URL will be dependent on where you run it from and the port specified i
     | `name`  | String | Person's name |
 
 -   **Example**:
-    
-        Request
-    
-        ```json
-        {
-            "headers": {},
-            "body": {
-                "name": "john"
-            }
+
+    Request
+
+    ```json
+    {
+        "headers": {},
+        "body": {
+            "name": "john"
         }
-        ```
-    
-        ```json
-        {
-            "message": "Person successfully deleted",
-            "person": {
-                "name": "john",
-            }
+    }
+    ```
+
+    Response
+
+    ```json
+    {
+        "message": "Person successfully deleted",
+        "person": {
+            "name": "john",
         }
-        ```
+    }
+    ```
